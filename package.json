@@ -1,0 +1,59 @@
+{
+  "name": "save-exchange-data",
+  "version": "0.1.0",
+  "description": "Save exchange data streams to influxdb",
+  "main": "src/index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "babel src --out-dir dist",
+    "lint": "eslint src",
+    "test": "NODE_ENV=test node_modules/.bin/mocha --compilers js:babel-register --require babel-polyfill ./src/lib/*.spec.js --recursive --harmony-async-await",
+    "test:watch": "NODE_ENV=test node_modules/.bin/mocha --compilers js:babel-register --require babel-polyfill --recursive ./src/lib/*.js --watch --harmony",
+    "test:cov": "node_modules/.bin/babel-node --presets es2015 es2016 stage-0 -- --plugins transform-builtin-extend -- ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
+    "prepublish": "npm run lint && npm run test && npm run clean && npm run build",
+    "output_nock": "node_modules/.bin/babel-node ./src/utils/nock_record.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://joliveros@bitbucket.org/cadquarry/scraper.git"
+  },
+  "keywords": [],
+  "author": "joliveros",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joliveros/save-exchange-data/issues"
+  },
+  "homepage": "https://github.com/joliveros/save-exchange-data#readme",
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "bull": "^2.0.0",
+    "cheerio": "^0.22.0",
+    "debug": "^2.2.0",
+    "form-data": "^2.1.2",
+    "lodash": "^4.17.2",
+    "ms": "^0.7.2",
+    "node-fetch": "^1.6.3",
+    "yargs": "^6.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.17.0",
+    "babel-eslint": "^7.0.0",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-plugin-transform-object-rest-spread": "^6.16.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2017-node7": "^0.4.1",
+    "babel-register": "^6.16.3",
+    "chai": "^3.5.0",
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "12.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
+    "mocha": "^3.1.1",
+    "nock": "^9.0.2",
+    "nock-vcr-recorder-mocha": "^0.3.2"
+  }
+}
